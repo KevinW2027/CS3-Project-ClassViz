@@ -64,15 +64,20 @@ for i, row in df.iterrows():
         fontsize=9
     )
 
-
 plt.title('States Visited vs Countries Visited', fontsize=16, fontweight='bold')
 plt.xlabel('States Visited', fontsize=13)
 plt.ylabel('Countries Visited', fontsize=13)
 plt.grid(alpha=0.25)
 plt.tight_layout()
 
-j, k = np.polyfit(df['States Visited'].dropna(), df['Countries Visited'].dropna(),1)
-plt.plot(df['States Visited'], j*df['Countries Visited']+k, linewidth=2)
+# Line of best fit
+x = df['States Visited'].dropna()
+y = df['Countries Visited'].dropna()
+
+m, b = np.polyfit(x, y, 1)   # slope (m) and intercept (b)
+
+# Plot the regression line
+plt.plot(x, m * x + b, linewidth=2)
 
 plt.savefig('states_vs_countries.png', bbox_inches='tight')
 plt.close()
