@@ -6,7 +6,7 @@ plt.style.use('dark_background')
 
 df = pd.read_csv('ClassDataset.csv')
 df = df.head(8)
-df = df[df['Zodiac Element'] != 'Air']
+df['Zodiac Element'] = df['Zodiac Element'].replace('Air', np.nan)
 print(df.info)
 
 # Group by neighborhood and compute the average
