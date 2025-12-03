@@ -2,12 +2,11 @@ import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
 
-# set style theme
 plt.style.use('dark_background')
 
-#read csv into dataframe
 df = pd.read_csv('ClassDataset.csv')
 df = df.head(8)
+df = df[df['Zodiac Element'] != 'Air']
 print(df.info)
 
 # Group by neighborhood and compute the average
@@ -21,10 +20,10 @@ plt.close()
 
 plt.figure(figsize=(10,6))
 
-# Use pastel colors for each element
+
 colors = ['#6EB5FF', '#A1E44D', '#FFB347', '#FF6961']
 
-# Create boxplot
+# boxplot
 bp = plt.boxplot(
     [df[df['Zodiac Element']==elem]['Height Inches'] 
      for elem in df['Zodiac Element'].unique()],
@@ -32,14 +31,13 @@ bp = plt.boxplot(
     labels=df['Zodiac Element'].unique()
 )
 
-# Color the boxes
+
 for patch, color in zip(bp['boxes'], colors):
     patch.set_facecolor(color)
     patch.set_alpha(0.65)
     patch.set_edgecolor('white')
     patch.set_linewidth(1.8)
 
-# Improve aesthetics
 plt.title('Height by Zodiac Element', fontsize=18, fontweight='bold')
 plt.xlabel('Zodiac Element', fontsize=14)
 plt.ylabel('Height (inches)', fontsize=14)
