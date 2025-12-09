@@ -12,7 +12,7 @@ print(df.info)
 # Group by neighborhood and compute the average
 avg_df = df.groupby('Neighborhood')['Commute Time Minutes'].mean()
 plt.bar(avg_df.index,avg_df.values, width= 0.6)
-
+plt.title('Neighborhood to Avg Commute Minutes', fontsize=18, fontweight='bold')
 plt.xlabel('Neighborhood')
 plt.ylabel('Commute time Minutes')
 plt.savefig('barchart.png', bbox_inches='tight')
